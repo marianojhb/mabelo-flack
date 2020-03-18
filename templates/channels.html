@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="row-sm-12">
+        <h1>Channels</h1>
+        <p>Hi <b>{{session.displayname }}</b>, you can add channels, enter any channel, and delete your channels</p>
+        <form class="form mb-5" id="addchannel">
+            <div class="form-group">
+                <label for="addchannel">Add channel</label>
+                <div class="form-inline">
+                    <input 
+                        id="channelname"
+                        autocomplete="off" 
+                        autofocus
+                        placeholder="Channel"
+                        type="text" 
+                        aria-describedby="channelHelp" 
+                        class="form-control col-4"
+                        required
+                    >
+                    <input type="submit" value="Submit!" class="btn btn-primary mx-3" />
+                </div>
+                <small id="channelHelp" class="form-text text-muted">Max lenght 50 characters.</small>
+            </div>
+        </form>
+        <div id="channel_added_message"></div>
+        <div id="channels">
+            {% for e in session.data.channels %}
+                    <a href="/channels/{{ e.channel }}" class="badge col-sm-3 col-lg-2 mb-2 mx-1 p-2 {{ e.color }}">{{ e.channel }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

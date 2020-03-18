@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="row-sm-12">
+        <h1 class="w-100 text-center mb-5">Welcome to Project 2: Flack</h1>
+        
+        {% if not session.displayname %}
+        <div class="col-12 mb-5"><h4>Please sign in to enter chat rooms</h4></div>
+        <form class="form-inline" id="signin">
+            
+                <label for="displayname" class="mr-2">Nickname</label>
+                <input class="form-control mr-2 my-2" id="displayname" name="displayname" type="text" required autocomplete="off">
+            
+            
+                <button class="btn btn-primary my-2" type="submit">Submit!</button>
+            
+        </form>
+        {% else %}
+        <div id="welcome" class="col-sm-12 mb-2 mx-1 p-2">
+            <h2>Welcome {{ session.displayname }}!</h2>
+        </div>            
+        <div id="logout" class="col-sm-12 col-lg-4 mb-2 mx-1 p-2">
+            <a href="{{ url_for('logout') }}">Logout</a></p>
+        </div>        
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}

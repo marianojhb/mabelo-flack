@@ -1,0 +1,38 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="container">
+  <div class="row-sm-12 border">
+    <div class="col-sm-12 rounded pb-5" 
+    style="
+      background-color: rgba(0, 0, 0, 0.075);
+
+      ">
+      <div style="border-bottom: 1px solid white; min-height: 3rem; padding:1rem"> <!-- CHAT TITLE -->
+        <h3>Channel: {{ session.channel }}</h3>
+      </div>
+      <div class="card-body" id="chat" 
+      style="
+          height: 50vh;
+          overflow: auto
+      
+      "> <!-- CHAT EN SI -->
+        {% for el in session.data.channels %}
+          {% if el.channel == session.channel %}
+            {% for i in el.messages  %}
+                <p>{{ i.sender }} ({{ i.date }}) : {{ i.message }} </p>
+            {% endfor %}
+          {% endif %}       
+          {% endfor %} 
+        </div>
+      <!-- SEND MESSAGE -->
+      <div class="row">
+        <div class="col-md-10 pb-1">
+          <textarea id="message" rows="2" class="form-control" placeholder="Write your message" autofocus /></textarea>
+        </div>
+        <div class="col-md-2 text-center text-sm-right">
+          <button id="btn_send"  type="submit" class="btn btn-primary btn-lg w-100 h-100">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
